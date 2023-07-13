@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="600" height="850"></canvas>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+                    "GLTFLoader": "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js",
+                    "OrbitControls": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js"
+                }
+            }
+        </script>
+        <script type="module">
+            import { GLTFLoader } from 'GLTFLoader';
+            import * as THREE from 'three';
+            import { OrbitControls } from 'OrbitControls';
+
+            let scene = new THREE.Scene();
+            let renderer = new THREE.WebGLRenderer({
+                canvas: document.querySelector('#canvas'),
+                antialias: true,
+            });
+            renderer.outputEncoding = THREE.sRGBEncoding;
+
+            let camera = new THREE.PerspectiveCamera(50, 1);
+            camera.position.set(0, 150, 70);
+            scene.background = new THREE.Color('white');
+            let light = new THREE.DirectionalLight(0xffffff, 5); //(color, intensity)
+            scene.add(light);
+
+            let loader = new GLTFLoader();
+            loader.load('/phone/scene.gltf', function (gltf) {
+                scene.add(gltf.scene);
+                renderer.render(scene, camera);
+
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.autoRotate = false;
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    gltf.scene.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                    controls.update();
+                }
+                animate();
+            });
+        </script>
+    </body>
+</html>
