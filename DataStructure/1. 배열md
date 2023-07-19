@@ -134,3 +134,6 @@ int e : v1이라고 하면 복사된 값이 e에 들어가고 int& e : v1이라�
 기본적으로 vector의 size 메소드는 시스템에 따라 unsigned int 혹은 unsigned long long을 반환한다.
 
 ⇒ vector에 있는 모든 원소를 순회하고 싶으면 range-based for loop를 사용해도 되고 인덱스를 하나씩 돌아도 상관은 없지만 size 메소드의 반환값이 unsigned이기에 마지막처럼 구현하면 안된다.
+
+
+**바킹독 실전 알고리즘 강의를 참고하여 정리했습니다.**
