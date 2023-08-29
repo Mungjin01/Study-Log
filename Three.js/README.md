@@ -10,4 +10,5 @@
 - [기본 광원들](https://jungmin402.tistory.com/74)
 - [특수 광원](https://jungmin402.tistory.com/75)
 - [Three.js 물질](https://jungmin402.tistory.com/77)
+- [Three.js 물질2](https://jungmin402.tistory.com/78)
   
